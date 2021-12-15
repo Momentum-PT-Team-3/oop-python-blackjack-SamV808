@@ -183,15 +183,6 @@ class Game:
         else:
             print("Both Bust!")
             
-            
-        # if player_score == 21 or player_score > dealer_score:
-        #     print("Player Wins!")
-        # elif dealer_score == 21 or dealer_score > player_score:
-        #     print("Dealer Wins!")
-        # elif dealer_score == player_score:
-        #     print("Tie!")
-        # else :
-        #     print("Both Lose!")
     
 playing = True
 while playing:
