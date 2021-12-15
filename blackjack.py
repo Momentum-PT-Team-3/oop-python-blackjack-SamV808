@@ -1,28 +1,3 @@
-# Write your blackjack game here.
-# This assignment is based on the card game blackjack (also called 21). If you are unfamiliar with the game, instructions can be found here.
-
-# The main objective is to have a hand of cards whose sum is as close to 21 as possible without going over.
-# This game will have two players, one dealer (computer) and one human.
-# Reqirements
-# Build a blackjack game using python between a player and a dealer.
-# The dealer's play is dictated by the rules of the game, and the dealer goes first. The dealer "hits" (is dealt a card) until their hand total is 17 or greater, at which point they stay. The dealers cards are all visible to the player.
-# The player then chooses whether to be hit or stay. The player may hit as many times as they want before staying, but if their hand totals over 21, they "bust" and lose.
-# If you want to make the game work for multiple players, go for it.
-# The deck is a standard 52 card deck with 4 suits. Face cards are worth 10. The Ace card can be worth 1 or 11.
-# Use classes. One way to think about classes is that they are the nouns involved in what you are modeling, so Card, Deck, Player, Dealer, and Game are all nouns that could be classes.
-# Give those classes methods. Think about the actions that happen to or are caused by these different elements. These choices are subjective and hard, and there is no one right way.
-# Use your classes and methods to execute the gameplay. It is always a great idea to sketch and/or comment this out first before writing code.
-
-# 0) Make A only be 1 for this first game version. TODO: handle 1 or 11 option later.
-# 1) A) Crete a player and
-#    B) dealer class. Each need a hand attribute.
-# 2) create a card class: suit, rank
-# 3) create a deck class, with cards. 52 total, 2-10, JQKA, in each suit
-# 4) Shuffle and deal method for cards
-# 5) Dealer play. Methods: hit, stay 
-# 6) Player play. Methods: hit, stay
-# 7) Determine who wins, loses. Need method for calculating value of hand
-
 import random
 
 SUITS = ["Diamonds", "Spades", "Clubs", "Hearts"]
