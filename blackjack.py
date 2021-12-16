@@ -1,8 +1,10 @@
 import random
 from typing import Counter
 
-def prPurple(skk): print("\033[95m {}\033[00m" .format(skk))
-def prCyan(skk): print("\033[96m {}\033[00m" .format(skk))
+# This adds colors to output.
+def prPurple(skk): print("\033[95m{}\033[00m" .format(skk))
+def prCyan(skk): print("\033[96m{}\033[00m" .format(skk))
+def prRed(skk): print("\033[91m {}\033[00m" .format(skk))
 SUITS = ["♥️", "♦️", "♠️", "♣️"]
 SCORES = {2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9, 10:10, "J":10, "Q":10, "K":10, "A":11}
 
@@ -16,9 +18,10 @@ class Player:
     
 
     def show_hand(self):
-        print(self.name)
+        prPurple(self.name)
         for card in self.hand:
-            print(card)
+            prRed(card) 
+        print(self.calculate_score())
 
     def calculate_score(self):
         raw_score = sum(self.hand)
@@ -50,9 +53,10 @@ class Dealer:
         return raw_score    
 
     def show_hand(self):
-        print("dealer")
+        prCyan("dealer")
         for card in self.hand:
-            print(card)
+            prRed(card)
+        print(self.calculate_score())
 
 class Card:
     def __init__(self, suit, rank, score):
