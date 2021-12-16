@@ -5,22 +5,35 @@ from typing import Counter
 def prPurple(skk): print("\033[95m{}\033[00m" .format(skk))
 def prCyan(skk): print("\033[96m{}\033[00m" .format(skk))
 def prRed(skk): print("\033[91m {}\033[00m" .format(skk))
+def prGreen(skk): print("\033[92m{}\033[00m" .format(skk))
+def prYellow(skk): print("\033[93m {}\033[00m" .format(skk))
+
 SUITS = ["♥️", "♦️", "♠️", "♣️"]
 SCORES = {2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9, 10:10, "J":10, "Q":10, "K":10, "A":11}
+
+print("Welcome To Sam's Casino!")
+
 
 class Player:
     def __init__(self, name=input("What's Your Name? ")):
         self.name = name
         self.hand = []
-
+        self.chips = 1000
+        
+    print("You have 1000 chips available to use today. \nIf you win your get double you bet back!")
     count_wins = 0
     win_streak = 0
+
+    def betting(self):
+
+        self.bet = int(input("How much do you want to bet today? "))
+        prGreen("You've placed a bet of " + str(self.bet) + " Chips")
     
 
     def show_hand(self):
         prPurple(self.name)
         for card in self.hand:
-            prRed(card) 
+            prYellow(card) 
         print(self.calculate_score())
 
     def calculate_score(self):
@@ -55,7 +68,7 @@ class Dealer:
     def show_hand(self):
         prCyan("dealer")
         for card in self.hand:
-            prRed(card)
+            prYellow(card)
         print(self.calculate_score())
 
 class Card:
@@ -93,8 +106,6 @@ player = Player()
 dealer = Dealer()
 
 
-
-print(player, dealer)
 
 suits = ["♥️", "♦️", "♠️", "♣️"]
 ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
@@ -168,33 +179,39 @@ class Game:
                 print("Tie!")
                 print("You've Won " + str(player.count_wins) + " Times.")
                 print("Your Win Streak: " + str(player.win_streak))
+                print("You have", str(player.chips), "chips")
                 return
             if player_score > dealer_score or dealer_score > 21:
                 print("Player Wins!")
+                player.chips += player.bet*2
                 player.count_wins += 1
                 player.win_streak += 1
                 print("You've Won " + str(player.count_wins) + " Times.")
                 print("Your Win Streak: " + str(player.win_streak))
+                print("You have", str(player.chips), "chips")
                 return
         if dealer_score <= 21 or dealer_score > player_score:
             print("Dealer Wins")  
+            player.chips -= player.bet
             player.win_streak = 0
             print("You've Won " + str(player.count_wins) + " Times.")
             print("Your Win Streak: " + str(player.win_streak))
+            print("You have", str(player.chips), "chips")
             return 
         else:
             print("Both Bust!")
+            player.chips -= player.bet
             print("You've Won " + str(player.count_wins) + " Times.")
             player.win_streak = 0
             print("Your Win Streak: " + str(player.win_streak))
+            print("You have", str(player.chips), "chips")
             
     
 playing = True
 while playing:
     game = Game(SUITS, SCORES)
+    player.betting()
     game.deal_card()
-
-
     game.hit_or_stand()
     game.dealer_hit_stand()
     game.winner()
